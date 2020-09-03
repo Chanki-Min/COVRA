@@ -2,7 +2,6 @@ import React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import {
-  Avatar,
   Box,
   Card,
   CardContent,
@@ -11,28 +10,22 @@ import {
   colors,
   makeStyles
 } from '@material-ui/core';
-import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
-import PeopleIcon from '@material-ui/icons/PeopleOutlined';
+import AddOutlinedIcon from "@material-ui/icons/AddOutlined";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     height: '100%'
   },
-  avatar: {
-    backgroundColor: colors.green[600],
-    height: 56,
-    width: 56
-  },
   differenceIcon: {
-    color: colors.green[900]
+    color: colors.red[900]
   },
   differenceValue: {
-    color: colors.green[900],
+    color: colors.red[900],
     marginRight: theme.spacing(1)
   }
 }));
 
-const TotalCustomers = ({ className, ...rest }) => {
+const GlobalConfirmed = ({ className, ...rest }) => {
   const classes = useStyles();
 
   return (
@@ -52,19 +45,14 @@ const TotalCustomers = ({ className, ...rest }) => {
               gutterBottom
               variant="h6"
             >
-              TOTAL CUSTOMERS
+              GLOBAL CONFIRMED
             </Typography>
             <Typography
               color="textPrimary"
               variant="h3"
             >
-              1,600
+              26,186,714
             </Typography>
-          </Grid>
-          <Grid item>
-            <Avatar className={classes.avatar}>
-              <PeopleIcon />
-            </Avatar>
           </Grid>
         </Grid>
         <Box
@@ -72,18 +60,18 @@ const TotalCustomers = ({ className, ...rest }) => {
           display="flex"
           alignItems="center"
         >
-          <ArrowUpwardIcon className={classes.differenceIcon} />
+          <AddOutlinedIcon className={classes.differenceIcon} />
           <Typography
             className={classes.differenceValue}
             variant="body2"
           >
-            16%
+            198,201
           </Typography>
           <Typography
             color="textSecondary"
             variant="caption"
           >
-            Since last month
+            Since yesterday
           </Typography>
         </Box>
       </CardContent>
@@ -91,8 +79,8 @@ const TotalCustomers = ({ className, ...rest }) => {
   );
 };
 
-TotalCustomers.propTypes = {
+GlobalConfirmed.propTypes = {
   className: PropTypes.string
 };
 
-export default TotalCustomers;
+export default GlobalConfirmed;

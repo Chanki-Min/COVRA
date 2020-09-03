@@ -2,30 +2,35 @@ import React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import {
-  Avatar,
   Box,
   Card,
   CardContent,
   Grid,
-  LinearProgress,
   Typography,
-  makeStyles,
-  colors
+  colors,
+  makeStyles
 } from '@material-ui/core';
-import InsertChartIcon from '@material-ui/icons/InsertChartOutlined';
+import AddOutlinedIcon from '@material-ui/icons/AddOutlined';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     height: '100%'
   },
   avatar: {
-    backgroundColor: colors.orange[600],
+    backgroundColor: colors.red[600],
     height: 56,
     width: 56
+  },
+  differenceIcon: {
+    color: colors.red[900]
+  },
+  differenceValue: {
+    color: colors.red[900],
+    marginRight: theme.spacing(1)
   }
 }));
 
-const TasksProgress = ({ className, ...rest }) => {
+const GlobalDeath = ({ className, ...rest }) => {
   const classes = useStyles();
 
   return (
@@ -45,34 +50,42 @@ const TasksProgress = ({ className, ...rest }) => {
               gutterBottom
               variant="h6"
             >
-              TASKS PROGRESS
+              GLOBAL DEATH
             </Typography>
             <Typography
               color="textPrimary"
               variant="h3"
             >
-              75.5%
+              852,758
             </Typography>
           </Grid>
-          <Grid item>
-            <Avatar className={classes.avatar}>
-              <InsertChartIcon />
-            </Avatar>
-          </Grid>
         </Grid>
-        <Box mt={3}>
-          <LinearProgress
-            value={75.5}
-            variant="determinate"
-          />
+        <Box
+          mt={2}
+          display="flex"
+          alignItems="center"
+        >
+          <AddOutlinedIcon className={classes.differenceIcon} />
+          <Typography
+            className={classes.differenceValue}
+            variant="body2"
+          >
+            4,772
+          </Typography>
+          <Typography
+            color="textSecondary"
+            variant="caption"
+          >
+            Since yesterday
+          </Typography>
         </Box>
       </CardContent>
     </Card>
   );
 };
 
-TasksProgress.propTypes = {
+GlobalDeath.propTypes = {
   className: PropTypes.string
 };
 
-export default TasksProgress;
+export default GlobalDeath;

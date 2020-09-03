@@ -2,26 +2,18 @@ import React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import {
-  Avatar,
-  Box,
   Card,
   CardContent,
   Grid,
   Typography,
-  colors,
-  makeStyles
+  makeStyles,
+  colors, Box
 } from '@material-ui/core';
-import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
-import MoneyIcon from '@material-ui/icons/Money';
+import AddOutlinedIcon from "@material-ui/icons/AddOutlined";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     height: '100%'
-  },
-  avatar: {
-    backgroundColor: colors.red[600],
-    height: 56,
-    width: 56
   },
   differenceIcon: {
     color: colors.red[900]
@@ -32,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const Budget = ({ className, ...rest }) => {
+const NationalConfirmed = ({ className, ...rest }) => {
   const classes = useStyles();
 
   return (
@@ -52,19 +44,14 @@ const Budget = ({ className, ...rest }) => {
               gutterBottom
               variant="h6"
             >
-              BUDGET
+              NATIONAL CONFIRMED
             </Typography>
             <Typography
               color="textPrimary"
               variant="h3"
             >
-              $24,000
+              20,644
             </Typography>
-          </Grid>
-          <Grid item>
-            <Avatar className={classes.avatar}>
-              <MoneyIcon />
-            </Avatar>
           </Grid>
         </Grid>
         <Box
@@ -72,18 +59,18 @@ const Budget = ({ className, ...rest }) => {
           display="flex"
           alignItems="center"
         >
-          <ArrowDownwardIcon className={classes.differenceIcon} />
+          <AddOutlinedIcon className={classes.differenceIcon} />
           <Typography
             className={classes.differenceValue}
             variant="body2"
           >
-            12%
+            195
           </Typography>
           <Typography
             color="textSecondary"
             variant="caption"
           >
-            Since last month
+            Since yesterday
           </Typography>
         </Box>
       </CardContent>
@@ -91,8 +78,8 @@ const Budget = ({ className, ...rest }) => {
   );
 };
 
-Budget.propTypes = {
+NationalConfirmed.propTypes = {
   className: PropTypes.string
 };
 
-export default Budget;
+export default NationalConfirmed;

@@ -5,14 +5,13 @@ import {
   makeStyles
 } from '@material-ui/core';
 import Page from 'src/components/Page';
-import Budget from './Budget';
-import LatestOrders from './LatestOrders';
-import LatestProducts from './LatestProducts';
+import GlobalDeath from './GlobalDeath';
 import Sales from './Sales';
-import TasksProgress from './TasksProgress';
-import TotalCustomers from './TotalCustomers';
-import TotalProfit from './TotalProfit';
+import NationalDeath from './NationalDeath';
+import GlobalConfirmed from './GlobalConfirmed';
+import NationalConfirmed from './NationalConfirmed';
 import TrafficByDevice from './TrafficByDevice';
+import Test from './Test'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -43,7 +42,7 @@ const Dashboard = () => {
             xl={3}
             xs={12}
           >
-            <Budget />
+            <GlobalDeath />
           </Grid>
           <Grid
             item
@@ -52,7 +51,7 @@ const Dashboard = () => {
             xl={3}
             xs={12}
           >
-            <TotalCustomers />
+            <GlobalConfirmed />
           </Grid>
           <Grid
             item
@@ -61,7 +60,7 @@ const Dashboard = () => {
             xl={3}
             xs={12}
           >
-            <TasksProgress />
+            <NationalDeath />
           </Grid>
           <Grid
             item
@@ -70,7 +69,7 @@ const Dashboard = () => {
             xl={3}
             xs={12}
           >
-            <TotalProfit />
+            <NationalConfirmed />
           </Grid>
           <Grid
             item
@@ -92,24 +91,20 @@ const Dashboard = () => {
           </Grid>
           <Grid
             item
-            lg={4}
-            md={6}
-            xl={3}
-            xs={12}
-          >
-            <LatestProducts />
-          </Grid>
-          <Grid
-            item
-            lg={8}
+            lg={12}
             md={12}
             xl={9}
             xs={12}
           >
-            <LatestOrders />
+            <Test />
           </Grid>
+
+
+
         </Grid>
+
       </Container>
+
     </Page>
   );
 };
