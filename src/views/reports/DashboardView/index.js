@@ -11,7 +11,9 @@ import NationalDeath from './NationalDeath';
 import GlobalConfirmed from './GlobalConfirmed';
 import NationalConfirmed from './NationalConfirmed';
 import TrafficByDevice from './TrafficByDevice';
+import GlobalStatusGraph from './GolbalStatusGraph';
 import Test from './Test'
+import GlobalCladeDoughnut from "./GlobalCladeDoughnut";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -71,23 +73,16 @@ const Dashboard = () => {
           >
             <NationalConfirmed />
           </Grid>
+
+
           <Grid
             item
-            lg={8}
+            lg={12}
             md={12}
             xl={9}
             xs={12}
           >
-            <Sales />
-          </Grid>
-          <Grid
-            item
-            lg={4}
-            md={6}
-            xl={3}
-            xs={12}
-          >
-            <TrafficByDevice />
+            <GlobalStatusGraph />
           </Grid>
           <Grid
             item
@@ -98,8 +93,24 @@ const Dashboard = () => {
           >
             <Test />
           </Grid>
-
-
+          <Grid
+            item
+            lg={4}
+            md={6}
+            xl={3}
+            xs={12}
+          >
+            <GlobalCladeDoughnut/>
+          </Grid>
+          <Grid
+            item
+            lg={4}
+            md={6}
+            xl={3}
+            xs={12}
+          >
+            <TrafficByDevice/>
+          </Grid>
 
         </Grid>
 

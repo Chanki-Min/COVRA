@@ -30,7 +30,7 @@ const TrafficByDevice = ({ className, ...rest }) => {
   const data = {
     datasets: [
       {
-        data: [63, 15, 22],
+        data: [100, 15, 22],
         backgroundColor: [
           colors.indigo[500],
           colors.red[600],

@@ -41,8 +41,7 @@ const Sales = ({ className, ...rest }) => {
   };
 
   const options = {
-    animation: true,
-    easing: 'linear',
+    animationEnabled: true,
     cornerRadius: 0,
     layout: { padding: 0 },
     legend: { display: true },
