@@ -44,7 +44,15 @@ const GlobalStatusGraph = ({className, ...rest}) => {
       //By day
       datasets: [
         {
-          backgroundColor: colors.indigo[500],
+          backgroundColor: [
+            colors.indigo[500],
+            colors.indigo[500],
+            colors.indigo[500],
+            colors.indigo[500],
+            colors.green[500],
+            colors.green[500],
+            colors.green[500],
+            ],
           data: [216452, 266120, 271234, 242321, 235421, 267432, 254231],
           label: 'Confirmed'
         },

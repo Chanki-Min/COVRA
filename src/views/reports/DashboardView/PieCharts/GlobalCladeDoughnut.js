@@ -46,11 +46,14 @@ const GlobalCladeDoughnut = ({className, ...rest}) => {
   }
 
   const options = {
-    animation: true,
+    animation: {
+      animateRotate: true,
+      animateScale: false,
+    },
     cutoutPercentage: 80,
     layout: { padding: 0 },
     legend: {
-      display: false
+      display: true
     },
     maintainAspectRatio: false,
     responsive: true,

@@ -5,15 +5,14 @@ import {
   makeStyles
 } from '@material-ui/core';
 import Page from 'src/components/Page';
-import GlobalDeath from './GlobalDeath';
+import GlobalDeath from './InfoCards/GlobalDeath';
 import Sales from './Sales';
-import NationalDeath from './NationalDeath';
-import GlobalConfirmed from './GlobalConfirmed';
-import NationalConfirmed from './NationalConfirmed';
+import NationalDeath from './InfoCards/NationalDeath';
+import GlobalConfirmed from './InfoCards/GlobalConfirmed';
+import NationalConfirmed from './InfoCards/NationalConfirmed';
 import TrafficByDevice from './TrafficByDevice';
-import GlobalStatusGraph from './GolbalStatusGraph';
-import Test from './Test'
-import GlobalCladeDoughnut from "./GlobalCladeDoughnut";
+import GlobalStatusGraph from './Graphs/GolbalStatusGraph';
+import GlobalCladeDoughnut from "./PieCharts/GlobalCladeDoughnut";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -83,15 +82,6 @@ const Dashboard = () => {
             xs={12}
           >
             <GlobalStatusGraph />
-          </Grid>
-          <Grid
-            item
-            lg={12}
-            md={12}
-            xl={9}
-            xs={12}
-          >
-            <Test />
           </Grid>
           <Grid
             item
