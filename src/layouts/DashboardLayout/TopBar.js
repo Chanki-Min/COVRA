@@ -9,12 +9,12 @@ import {
   Hidden,
   IconButton,
   Toolbar,
-  makeStyles
+  makeStyles, Typography
 } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import NotificationsIcon from '@material-ui/icons/NotificationsOutlined';
 import InputIcon from '@material-ui/icons/Input';
-import Logo from 'src/components/Logo';
+import withStyles from "@material-ui/core/styles/withStyles";
 
 const useStyles = makeStyles(() => ({
   root: {},
@@ -23,6 +23,12 @@ const useStyles = makeStyles(() => ({
     height: 60
   }
 }));
+
+const WhiteTextTypography = withStyles({
+  root: {
+    color: "#FFFFFF"
+  }
+})(Typography);
 
 const TopBar = ({
   className,
@@ -40,8 +46,14 @@ const TopBar = ({
     >
       <Toolbar>
         <RouterLink to="/">
-          <Logo />
+          <WhiteTextTypography
+            component="h1"
+            variant="h2"
+          >
+            COVRA covid-19 dashboard
+          </WhiteTextTypography>
         </RouterLink>
+
         <Box flexGrow={1} />
         <Hidden mdDown>
           <IconButton color="inherit">

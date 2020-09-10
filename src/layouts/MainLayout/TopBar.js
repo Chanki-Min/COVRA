@@ -5,9 +5,9 @@ import PropTypes from 'prop-types';
 import {
   AppBar,
   Toolbar,
-  makeStyles
+  makeStyles, Typography
 } from '@material-ui/core';
-import Logo from 'src/components/Logo';
+import withStyles from "@material-ui/core/styles/withStyles";
 
 const useStyles = makeStyles(({
   root: {},
@@ -15,6 +15,12 @@ const useStyles = makeStyles(({
     height: 64
   }
 }));
+
+const WhiteTextTypography = withStyles({
+  root: {
+    color: "#FFFFFF"
+  }
+})(Typography);
 
 const TopBar = ({ className, ...rest }) => {
   const classes = useStyles();
@@ -27,7 +33,12 @@ const TopBar = ({ className, ...rest }) => {
     >
       <Toolbar className={classes.toolbar}>
         <RouterLink to="/">
-          <Logo />
+          <WhiteTextTypography
+            component="h1"
+            variant="h2"
+          >
+            COVRA covid-19 dashboard
+          </WhiteTextTypography>
         </RouterLink>
       </Toolbar>
     </AppBar>
