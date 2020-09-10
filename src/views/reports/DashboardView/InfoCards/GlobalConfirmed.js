@@ -11,6 +11,7 @@ import {
   makeStyles
 } from '@material-ui/core';
 import AddOutlinedIcon from "@material-ui/icons/AddOutlined";
+import CountUp from "react-countup";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -27,6 +28,11 @@ const useStyles = makeStyles((theme) => ({
 
 const GlobalConfirmed = ({ className, ...rest }) => {
   const classes = useStyles();
+  const [data, setData] = React.useState(undefined);
+  fetch('http://localhost:5000/globalConfirmed')
+    .then( (response) => response.json())
+    .then(data => setData(data))
+    .catch(e => console.error(e));
 
   return (
     <Card
@@ -51,7 +57,10 @@ const GlobalConfirmed = ({ className, ...rest }) => {
               color="textPrimary"
               variant="h3"
             >
-              26,186,714
+              <CountUp
+                end={data === undefined ? 0 : parseInt(data.total)}
+                separator=','
+              />
             </Typography>
           </Grid>
         </Grid>
@@ -65,7 +74,10 @@ const GlobalConfirmed = ({ className, ...rest }) => {
             className={classes.differenceValue}
             variant="body2"
           >
-            198,201
+            <CountUp
+              end={data === undefined ? 0 : parseInt(data.sinceYesterday)}
+              separator=','
+            />
           </Typography>
           <Typography
             color="textSecondary"
