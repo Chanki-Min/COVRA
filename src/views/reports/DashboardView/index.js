@@ -6,11 +6,9 @@ import {
 } from '@material-ui/core';
 import Page from 'src/components/Page';
 import GlobalDeath from './InfoCards/GlobalDeath';
-import Sales from './Sales';
 import NationalDeath from './InfoCards/NationalDeath';
 import GlobalConfirmed from './InfoCards/GlobalConfirmed';
 import NationalConfirmed from './InfoCards/NationalConfirmed';
-import TrafficByDevice from './TrafficByDevice';
 import GlobalStatusGraph from './Graphs/GolbalStatusGraph';
 import GlobalCladeDoughnut from "./PieCharts/GlobalCladeDoughnut";
 
@@ -91,15 +89,6 @@ const Dashboard = () => {
             xs={12}
           >
             <GlobalCladeDoughnut/>
-          </Grid>
-          <Grid
-            item
-            lg={4}
-            md={6}
-            xl={3}
-            xs={12}
-          >
-            <TrafficByDevice/>
           </Grid>
 
         </Grid>

@@ -213,9 +213,14 @@ const GlobalStatusGraph = ({className, ...rest}) => {
         </Box>
       </CardContent>
       <Divider/>
-      <Box>
-        <Typography>
-          대충 주의사항이라는 메세지
+      <Box
+      m={2}
+      >
+        <Typography
+          color='textPrimary'
+          variant='h6'
+        >
+          목차 클릭시 상세보기 가능합니다. 오늘 이후의 데이터는 추정치입니다.
         </Typography>
       </Box>
 
