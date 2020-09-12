@@ -12,7 +12,8 @@ import {
 } from '@material-ui/core';
 import AddOutlinedIcon from '@material-ui/icons/AddOutlined';
 import dotenv from 'dotenv';
-import CountUp from "react-countup";
+import CountUp from 'react-countup';
+
 dotenv.config();
 
 const useStyles = makeStyles((theme) => ({
@@ -36,10 +37,10 @@ const useStyles = makeStyles((theme) => ({
 const GlobalDeath = ({ className, ...rest }) => {
   const classes = useStyles();
   const [data, setData] = React.useState(undefined);
-  fetch('http://localhost:5000/globalDeath')
-    .then( (response) => response.json())
-    .then(data => setData(data))
-    .catch(e => console.error(e));
+  fetch('http://localhost:5000/nationalDeath?nation=global')
+    .then((response) => response.json())
+    .then((cardData) => setData(cardData))
+    .catch((e) => console.error(e));
 
   return (
     <Card
@@ -65,8 +66,8 @@ const GlobalDeath = ({ className, ...rest }) => {
               variant="h3"
             >
               <CountUp
-                end={data === undefined ? 0 : parseInt(data.total)}
-                separator=','
+                end={data === undefined ? 0 : parseInt(data.total, 10)}
+                separator=","
               />
             </Typography>
           </Grid>
@@ -82,8 +83,8 @@ const GlobalDeath = ({ className, ...rest }) => {
             variant="body2"
           >
             <CountUp
-              end={data === undefined ? 0 : parseInt(data.sinceYesterday)}
-              separator=','
+              end={data === undefined ? 0 : parseInt(data.sinceYesterday, 10)}
+              separator=","
             />
           </Typography>
           <Typography

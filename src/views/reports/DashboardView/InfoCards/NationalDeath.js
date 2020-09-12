@@ -9,7 +9,7 @@ import {
   makeStyles,
   colors, Box
 } from '@material-ui/core';
-import AddOutlinedIcon from "@material-ui/icons/AddOutlined";
+import AddOutlinedIcon from '@material-ui/icons/AddOutlined';
 import CountUp from 'react-countup';
 
 const useStyles = makeStyles((theme) => ({
@@ -28,10 +28,11 @@ const useStyles = makeStyles((theme) => ({
 const NationalDeath = ({ className, ...rest }) => {
   const classes = useStyles();
   const [data, setData] = React.useState(undefined);
-  fetch('http://localhost:5000/nationalDeath')
-    .then( (response) => response.json())
-    .then(data => setData(data))
-    .catch(e => console.error(e));
+  const [nation, setNation] = React.useState('Republic of Korea');
+  fetch(`http://localhost:5000/nationalDeath?nation=${nation}`)
+    .then((response) => response.json())
+    .then((cardData) => setData(cardData))
+    .catch((e) => console.error(e));
 
   return (
     <Card
@@ -57,8 +58,8 @@ const NationalDeath = ({ className, ...rest }) => {
               variant="h3"
             >
               <CountUp
-                end={data === undefined ? 0 : parseInt(data.total)}
-                separator=','
+                end={data === undefined ? 0 : parseInt(data.total, 10)}
+                separator=","
               />
             </Typography>
           </Grid>
@@ -74,8 +75,8 @@ const NationalDeath = ({ className, ...rest }) => {
             variant="body2"
           >
             <CountUp
-              end={data === undefined ? 0 : parseInt(data.sinceYesterday)}
-              separator=','
+              end={data === undefined ? 0 : parseInt(data.sinceYesterday, 10)}
+              separator=","
             />
           </Typography>
           <Typography

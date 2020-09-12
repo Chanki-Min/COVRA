@@ -10,8 +10,8 @@ import {
   colors,
   makeStyles
 } from '@material-ui/core';
-import AddOutlinedIcon from "@material-ui/icons/AddOutlined";
-import CountUp from "react-countup";
+import AddOutlinedIcon from '@material-ui/icons/AddOutlined';
+import CountUp from 'react-countup';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -29,10 +29,10 @@ const useStyles = makeStyles((theme) => ({
 const GlobalConfirmed = ({ className, ...rest }) => {
   const classes = useStyles();
   const [data, setData] = React.useState(undefined);
-  fetch('http://localhost:5000/globalConfirmed')
-    .then( (response) => response.json())
-    .then(data => setData(data))
-    .catch(e => console.error(e));
+  fetch('http://localhost:5000/nationalConfirmed?nation=global')
+    .then((response) => response.json())
+    .then((cardData) => setData(cardData))
+    .catch((e) => console.error(e));
 
   return (
     <Card
@@ -59,7 +59,7 @@ const GlobalConfirmed = ({ className, ...rest }) => {
             >
               <CountUp
                 end={data === undefined ? 0 : parseInt(data.total)}
-                separator=','
+                separator=","
               />
             </Typography>
           </Grid>
@@ -76,7 +76,7 @@ const GlobalConfirmed = ({ className, ...rest }) => {
           >
             <CountUp
               end={data === undefined ? 0 : parseInt(data.sinceYesterday)}
-              separator=','
+              separator=","
             />
           </Typography>
           <Typography
