@@ -7,7 +7,7 @@ import {
   Toolbar,
   makeStyles, Typography
 } from '@material-ui/core';
-import withStyles from "@material-ui/core/styles/withStyles";
+import withStyles from '@material-ui/core/styles/withStyles';
 
 const useStyles = makeStyles(({
   root: {},
@@ -18,7 +18,7 @@ const useStyles = makeStyles(({
 
 const WhiteTextTypography = withStyles({
   root: {
-    color: "#FFFFFF"
+    color: '#FFFFFF'
   }
 })(Typography);
 

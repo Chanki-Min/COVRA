@@ -14,7 +14,7 @@ import {
 import MenuIcon from '@material-ui/icons/Menu';
 import NotificationsIcon from '@material-ui/icons/NotificationsOutlined';
 import InputIcon from '@material-ui/icons/Input';
-import withStyles from "@material-ui/core/styles/withStyles";
+import withStyles from '@material-ui/core/styles/withStyles';
 
 const useStyles = makeStyles(() => ({
   root: {},
@@ -26,7 +26,7 @@ const useStyles = makeStyles(() => ({
 
 const WhiteTextTypography = withStyles({
   root: {
-    color: "#FFFFFF"
+    color: '#FFFFFF'
   }
 })(Typography);
 
