@@ -4,6 +4,9 @@
     "es6": true,
     "browser": true
   },
+  "plugins": [
+    "modules-newline"
+  ],
   "extends": [
     "airbnb",
     "airbnb/hooks",
@@ -37,6 +40,8 @@
     "react/forbid-prop-types": "off",
     "react/jsx-filename-extension": "off",
     "react/jsx-props-no-spreading": "off",
-    "react/require-default-props": "off"
+    "react/require-default-props": "off",
+    "modules-newline/import-declaration-newline": "warn",
+    "modules-newline/export-declaration-newline": "warn"
   }
 }
