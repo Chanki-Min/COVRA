@@ -12,7 +12,7 @@ import {
 } from '@material-ui/core';
 import { Bar } from 'react-chartjs-2';
 import _ from 'lodash';
-import processFetchData from './ProcessFetchData';
+import processFetchData from './ProcessFetchBarData';
 import DropDownButton from './DropDownButton';
 
 const useStyles = makeStyles(() => ({
@@ -112,7 +112,7 @@ const GlobalStatusGraph = ({ className, ...rest }) => {
       {...rest}
     >
       <CardHeader
-        title={`${`${capitalize(nationOptions[nationIndex])}'s`} Status & Prediction`}
+        title={`${`${capitalize(nationOptions[nationIndex])}'s`} Status`}
         action={(
           <Box
             display="flex"

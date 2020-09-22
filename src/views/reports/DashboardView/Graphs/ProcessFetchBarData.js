@@ -5,7 +5,9 @@ const TIME_FORMAT = 'YYYY-MM-DD';
 
 const typeBackGroundColor = {
   death: colors.red[500],
+  deathPrediction: colors.red[500],
   confirmed: colors.indigo[500],
+  confirmedPrediction: colors.indigo[500],
 };
 
 const makeDataSet = (datasetOrigin, type) => {
@@ -39,7 +41,7 @@ const makeDataListEntity = (byData, type) => {
   );
 };
 
-const ProcessFetchData = async (fetchData) => {
+const ProcessFetchBarData = async (fetchData) => {
   const dataList = [];
   dataList.push(makeDataListEntity(fetchData.byDay, 'days'));
   dataList.push(makeDataListEntity(fetchData.byWeek, 'weeks'));
@@ -47,4 +49,4 @@ const ProcessFetchData = async (fetchData) => {
   return dataList;
 };
 
-export default ProcessFetchData;
+export default ProcessFetchBarData;
