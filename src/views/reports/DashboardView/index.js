@@ -9,8 +9,9 @@ import GlobalDeath from './InfoCards/GlobalDeath';
 import NationalDeath from './InfoCards/NationalDeath';
 import GlobalConfirmed from './InfoCards/GlobalConfirmed';
 import NationalConfirmed from './InfoCards/NationalConfirmed';
-import GlobalStatusGraph from './Graphs/GolbalStatusGraph';
-import GlobalCladeDoughnut from "./PieCharts/GlobalCladeDoughnut";
+import StatusBarGraph from './Graphs/StatusBarGraph';
+import PredictionLineGraph from './Graphs/PredictionLineGraph';
+import GlobalCladeDoughnut from './PieCharts/GlobalCladeDoughnut';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -71,7 +72,6 @@ const Dashboard = () => {
             <NationalConfirmed />
           </Grid>
 
-
           <Grid
             item
             lg={12}
@@ -79,7 +79,16 @@ const Dashboard = () => {
             xl={9}
             xs={12}
           >
-            <GlobalStatusGraph />
+            <StatusBarGraph />
+          </Grid>
+          <Grid
+            item
+            lg={12}
+            md={12}
+            xl={9}
+            xs={12}
+          >
+            <PredictionLineGraph />
           </Grid>
           <Grid
             item
@@ -88,7 +97,7 @@ const Dashboard = () => {
             xl={3}
             xs={12}
           >
-            <GlobalCladeDoughnut/>
+            <GlobalCladeDoughnut />
           </Grid>
 
         </Grid>
