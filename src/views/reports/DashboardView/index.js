@@ -5,13 +5,10 @@ import {
   makeStyles
 } from '@material-ui/core';
 import Page from 'src/components/Page';
-import GlobalDeath from './InfoCards/GlobalDeath';
-import NationalDeath from './InfoCards/NationalDeath';
-import GlobalConfirmed from './InfoCards/GlobalConfirmed';
-import NationalConfirmed from './InfoCards/NationalConfirmed';
 import StatusBarGraph from './Graphs/StatusBarGraph';
 import PredictionLineGraph from './Graphs/PredictionLineGraph';
-import GlobalCladeDoughnut from './PieCharts/GlobalCladeDoughnut';
+import CladeDoughnut from './PieCharts/CladeDoughnut';
+import InfoCard from './InfoCards/InfoCard';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -21,6 +18,13 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: theme.spacing(3)
   }
 }));
+const nationOptions = ['global', 'Australia', 'Austria', 'Belgium', 'Canada', 'Chile', 'Denmark',
+  'Estonia', 'Finland', 'France', 'Germany', 'Greece', 'Hungary',
+  'Iceland', 'Ireland', 'Israel', 'Italy', 'Japan', 'Latvia',
+  'Lithuania', 'Luxembourg', 'Mexico', 'Netherlands', 'New Zealand',
+  'Norway', 'Poland', 'Portugal', 'Republic of Korea', 'Slovakia',
+  'Slovenia', 'Spain', 'Sweden', 'Switzerland',
+  'United States of America'];
 
 const Dashboard = () => {
   const classes = useStyles();
@@ -42,7 +46,13 @@ const Dashboard = () => {
             xl={3}
             xs={12}
           >
-            <GlobalDeath />
+            <InfoCard
+              title="GLOBAL DEATH"
+              url="http://localhost:5000/nationalDeath"
+              defaultNation="global"
+              nationOptions={nationOptions}
+              showNationPicker={false}
+            />
           </Grid>
           <Grid
             item
@@ -51,7 +61,13 @@ const Dashboard = () => {
             xl={3}
             xs={12}
           >
-            <GlobalConfirmed />
+            <InfoCard
+              title="GLOBAL CONFIRMED"
+              url="http://localhost:5000/nationalConfirmed"
+              defaultNation="global"
+              nationOptions={nationOptions}
+              showNationPicker={false}
+            />
           </Grid>
           <Grid
             item
@@ -60,7 +76,13 @@ const Dashboard = () => {
             xl={3}
             xs={12}
           >
-            <NationalDeath />
+            <InfoCard
+              title="NATIONAL DEATH"
+              url="http://localhost:5000/nationalDeath"
+              defaultNation="Australia"
+              nationOptions={nationOptions}
+              showNationPicker
+            />
           </Grid>
           <Grid
             item
@@ -69,7 +91,13 @@ const Dashboard = () => {
             xl={3}
             xs={12}
           >
-            <NationalConfirmed />
+            <InfoCard
+              title="NATIONAL CONFIRMED"
+              url="http://localhost:5000/nationalConfirmed"
+              defaultNation="Australia"
+              nationOptions={nationOptions}
+              showNationPicker
+            />
           </Grid>
 
           <Grid
@@ -79,16 +107,9 @@ const Dashboard = () => {
             xl={9}
             xs={12}
           >
-            <StatusBarGraph />
-          </Grid>
-          <Grid
-            item
-            lg={12}
-            md={12}
-            xl={9}
-            xs={12}
-          >
-            <PredictionLineGraph />
+            <StatusBarGraph
+              nationOptions={nationOptions}
+            />
           </Grid>
           <Grid
             item
@@ -97,9 +118,36 @@ const Dashboard = () => {
             xl={3}
             xs={12}
           >
-            <GlobalCladeDoughnut />
+            <CladeDoughnut
+              nationOptions={nationOptions}
+              showNationPicker={false}
+              defaultNation="global"
+            />
           </Grid>
-
+          <Grid
+            item
+            lg={12}
+            md={12}
+            xl={9}
+            xs={12}
+          >
+            <PredictionLineGraph
+              nationOptions={nationOptions}
+            />
+          </Grid>
+          <Grid
+            item
+            lg={4}
+            md={6}
+            xl={3}
+            xs={12}
+          >
+            <CladeDoughnut
+              nationOptions={nationOptions}
+              showNationPicker
+              defaultNation="Australia"
+            />
+          </Grid>
         </Grid>
 
       </Container>
