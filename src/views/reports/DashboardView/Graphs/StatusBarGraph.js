@@ -1,5 +1,6 @@
 import React from 'react';
 import clsx from 'clsx';
+import PropTypes from 'prop-types';
 import {
   Box,
   Card,
@@ -13,24 +14,17 @@ import {
 import { Bar } from 'react-chartjs-2';
 import _ from 'lodash';
 import processFetchData from './ProcessFetchBarData';
-import DropDownButton from './DropDownButton';
+import DropDownButton from '../../../../components/DropDownButton';
+import capitalize from '../../../../util/capitalize';
 
 const useStyles = makeStyles(() => ({
   root: {}
 }));
 
-const GlobalStatusGraph = ({ className, ...rest }) => {
+const StatusBarGraph = ({ className, nationOptions, ...rest }) => {
   const chartRef = React.useRef(null);
   const classes = useStyles();
   const theme = useTheme();
-
-  const nationOptions = ['global', 'Australia', 'Austria', 'Belgium', 'Canada', 'Chile', 'Denmark',
-    'Estonia', 'Finland', 'France', 'Germany', 'Greece', 'Hungary',
-    'Iceland', 'Ireland', 'Israel', 'Italy', 'Japan', 'Latvia',
-    'Lithuania', 'Luxembourg', 'Mexico', 'Netherlands', 'New Zealand',
-    'Norway', 'Poland', 'Portugal', 'Republic of Korea', 'Slovakia',
-    'Slovenia', 'Spain', 'Sweden', 'Switzerland',
-    'United States of America'];
   const [nationIndex, setNationIndex] = React.useState(0);
 
   const graphViewOptions = ['By days', 'By week', 'By month'];
@@ -48,8 +42,6 @@ const GlobalStatusGraph = ({ className, ...rest }) => {
       console.log(e.message);
     }
   };
-
-  const capitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1);
 
   React.useEffect(() => {
     fetchData().then(() => console.log('data fetched'));
@@ -166,4 +158,9 @@ const GlobalStatusGraph = ({ className, ...rest }) => {
   );
 };
 
-export default GlobalStatusGraph;
+StatusBarGraph.propTypes = {
+  className: PropTypes.string,
+  nationOptions: PropTypes.arrayOf(PropTypes.string)
+};
+
+export default StatusBarGraph;

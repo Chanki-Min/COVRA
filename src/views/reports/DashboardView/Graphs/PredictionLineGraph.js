@@ -20,25 +20,19 @@ import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker
 } from '@material-ui/pickers';
+import PropTypes from 'prop-types';
 import processFetchLineData from './ProcessFetchLineData';
-import DropDownButton from './DropDownButton';
+import DropDownButton from '../../../../components/DropDownButton';
 
 const useStyles = makeStyles(() => ({
   root: {}
 }));
 
-const PredictionLineGraph = ({ className, ...rest }) => {
+const PredictionLineGraph = ({ className, nationOptions, ...rest }) => {
   const chartRef = React.useRef(null);
   const classes = useStyles();
   const theme = useTheme();
 
-  const nationOptions = ['global', 'Australia', 'Austria', 'Belgium', 'Canada', 'Chile', 'Denmark',
-    'Estonia', 'Finland', 'France', 'Germany', 'Greece', 'Hungary',
-    'Iceland', 'Ireland', 'Israel', 'Italy', 'Japan', 'Latvia',
-    'Lithuania', 'Luxembourg', 'Mexico', 'Netherlands', 'New Zealand',
-    'Norway', 'Poland', 'Portugal', 'Republic of Korea', 'Slovakia',
-    'Slovenia', 'Spain', 'Sweden', 'Switzerland',
-    'United States of America'];
   const [nationIndex, setNationIndex] = React.useState(0);
 
   const graphViewOptions = ['By days', 'By week', 'By month'];
@@ -178,6 +172,11 @@ const PredictionLineGraph = ({ className, ...rest }) => {
 
     </Card>
   );
+};
+
+PredictionLineGraph.propTypes = {
+  className: PropTypes.string,
+  nationOptions: PropTypes.arrayOf(PropTypes.string)
 };
 
 export default PredictionLineGraph;
