@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+import React,
+{ useEffect } from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { Doughnut } from 'react-chartjs-2';
@@ -12,6 +13,8 @@ import {
   makeStyles,
   useTheme
 } from '@material-ui/core';
+import DropDownButton from '../../../../components/DropDownButton';
+import capitalize from '../../../../util/capitalize';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -40,22 +43,23 @@ const processFetchData = (cladeData) => {
         }
       ],
       labels: cladeData.label,
-      firstOccurredLoc: ['우한', '베이징', '서울', '도쿄', '테스트', '테스트2', '테스트3'],
-      firstOccurredAt: ['2020-02-13', '2020-02-14', '2020-02-15', '2020-02-16', '2020-02-17', '2020-02-18', '2020-02-19'],
-      mortality: [10.1, 20.1, 30.1, 40.1, 50.1, 60.1, 0],
     }
   );
 };
 
-const GlobalCladeDoughnut = ({ className, ...rest }) => {
+const CladeDoughnut = ({
+  className, nationOptions, defaultNation, showNationPicker, ...rest
+}) => {
   const classes = useStyles();
   const theme = useTheme();
-  const [nation, setNation] = React.useState('global');
+  const [nationIndex, setNationIndex] = React.useState(
+    nationOptions.findIndex((v) => v === defaultNation)
+  );
   const [cladeData, setCladeData] = React.useState({});
 
   async function fetchData() {
     try {
-      const response = await fetch(`http://localhost:5000/nationalCladeStatus?nation=${nation}`);
+      const response = await fetch(`http://localhost:5000/nationalCladeStatus?nation=${nationOptions[nationIndex]}`);
       const json = await response.json();
       const processedData = await processFetchData(json);
       setCladeData(processedData);
@@ -66,7 +70,7 @@ const GlobalCladeDoughnut = ({ className, ...rest }) => {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [nationIndex]);
 
   const options = {
     animation: {
@@ -99,6 +103,7 @@ const GlobalCladeDoughnut = ({ className, ...rest }) => {
         label: (tooltipItem, data) => {
           return `Clade : ${data.labels[tooltipItem.index]}`;
         },
+        /*
         afterLabel: (tooltipItem, data) => {
           const arr = [];
           arr.push(`Occurrences : ${data.datasets[0].data[tooltipItem.index]}`);
@@ -107,7 +112,8 @@ const GlobalCladeDoughnut = ({ className, ...rest }) => {
           arr.push(`First occurred at : ${data.firstOccurredAt[tooltipItem.index]}`);
           return arr.join('\n');
         },
-        footer: () => 'sampleData source : GISAID'
+        */
+        footer: () => 'data source : GISAID'
       }
 
     }
@@ -118,7 +124,24 @@ const GlobalCladeDoughnut = ({ className, ...rest }) => {
       className={clsx(classes.root, className)}
       {...rest}
     >
-      <CardHeader title="Global clade population" />
+      <CardHeader
+        title={`${capitalize(nationOptions[nationIndex])} clade population`}
+        action={showNationPicker
+        && (
+          <Box
+            display="flex"
+            flexDirection="row"
+            justifyContent="space-between"
+          >
+            <DropDownButton // 나라 선택창
+              className={clsx(classes.root, className)}
+              itemList={nationOptions}
+              selectedIndex={nationIndex}
+              onChangeSelectedIndex={(nextIndex) => setNationIndex(nextIndex)}
+            />
+          </Box>
+        )}
+      />
       <Divider />
       <CardContent>
         <Box
@@ -136,8 +159,11 @@ const GlobalCladeDoughnut = ({ className, ...rest }) => {
   );
 };
 
-GlobalCladeDoughnut.prototypes = {
-  className: PropTypes.string
+CladeDoughnut.propTypes = {
+  className: PropTypes.string,
+  defaultNation: PropTypes.string,
+  nationOptions: PropTypes.arrayOf(PropTypes.string),
+  showNationPicker: PropTypes.bool
 };
 
-export default GlobalCladeDoughnut;
+export default CladeDoughnut;
