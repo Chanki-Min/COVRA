@@ -14,6 +14,7 @@ import {
 import AddOutlinedIcon from '@material-ui/icons/AddOutlined';
 import RemoveOutlinedIcon from '@material-ui/icons/RemoveOutlined';
 import CountUp from 'react-countup';
+import DropDownButton from '../../../../components/DropDownButton';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -35,23 +36,28 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const GlobalConfirmed = ({ className, ...rest }) => {
+const InfoCard = ({
+  className, url, defaultNation, title, showNationPicker, nationOptions, ...rest
+}) => {
   const classes = useStyles();
   const [data, setData] = React.useState(undefined);
   const [diff, setDiff] = React.useState(0);
+  const [nationIndex, setNationIndex] = React.useState(
+    nationOptions.findIndex((v) => v === defaultNation)
+  );
   const fetchData = async () => {
     try {
-      const response = await fetch('http://localhost:5000/nationalConfirmed?nation=global');
+      const response = await fetch(`${url}?nation=${nationOptions[nationIndex]}`);
       const json = await response.json();
       setData(json);
     } catch (e) {
-      console.error(e.message());
+      console.error(e);
     }
   };
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [nationIndex]);
 
   useEffect(() => {
     console.log('a');
@@ -66,30 +72,52 @@ const GlobalConfirmed = ({ className, ...rest }) => {
       {...rest}
     >
       <CardContent>
-        <Grid
-          container
-          justify="space-between"
-          spacing={3}
+        <Box
+          display="flex"
+          justifyContent="space-between"
         >
-          <Grid item>
-            <Typography
-              color="textSecondary"
-              gutterBottom
-              variant="h6"
+          <Box
+            width="50%"
+          >
+            <Grid
+              container
+              justify="space-between"
+              spacing={3}
             >
-              GLOBAL CONFIRMED
-            </Typography>
-            <Typography
-              color="textPrimary"
-              variant="h3"
+              <Grid item>
+                <Typography
+                  color="textSecondary"
+                  gutterBottom
+                  variant="h6"
+                >
+                  {title}
+                </Typography>
+                <Typography
+                  color="textPrimary"
+                  variant="h3"
+                >
+                  <CountUp
+                    end={data === undefined ? 0 : parseInt(data.total, 10)}
+                    separator=","
+                  />
+                </Typography>
+              </Grid>
+            </Grid>
+          </Box>
+          { showNationPicker
+            && (
+            <Box
+              mt={-1.5}
             >
-              <CountUp
-                end={data === undefined ? 0 : parseInt(data.total, 10)}
-                separator=","
+              <DropDownButton
+                className={clsx(classes.root, className)}
+                itemList={nationOptions}
+                selectedIndex={nationIndex}
+                onChangeSelectedIndex={(nextIndex) => setNationIndex(nextIndex)}
               />
-            </Typography>
-          </Grid>
-        </Grid>
+            </Box>
+            )}
+        </Box>
         <Box
           mt={2}
           display="flex"
@@ -125,8 +153,13 @@ const GlobalConfirmed = ({ className, ...rest }) => {
   );
 };
 
-GlobalConfirmed.propTypes = {
-  className: PropTypes.string
+InfoCard.propTypes = {
+  className: PropTypes.string,
+  url: PropTypes.string,
+  title: PropTypes.string,
+  defaultNation: PropTypes.string,
+  showNationPicker: PropTypes.bool,
+  nationOptions: PropTypes.arrayOf(PropTypes.string)
 };
 
-export default GlobalConfirmed;
+export default InfoCard;
