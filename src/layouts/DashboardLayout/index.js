@@ -1,6 +1,9 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-import { makeStyles } from '@material-ui/core';
+import {
+  makeStyles
+} from '@material-ui/core';
+
 import TopBar from './TopBar';
 
 const useStyles = makeStyles((theme) => ({
@@ -9,7 +12,8 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     height: '100%',
     overflow: 'hidden',
-    width: '100%'
+    width: '100%',
+    flexDirection: 'column'
   },
   wrapper: {
     display: 'flex',
@@ -18,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: 64,
     [theme.breakpoints.up('lg')]: {
       paddingLeft: 256,
-      paddingRight: 256
+      paddingRight: 256,
     }
   },
   contentContainer: {
@@ -30,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
     flex: '1 1 auto',
     height: '100%',
     overflow: 'auto'
-  }
+  },
 }));
 
 const DashboardLayout = () => {

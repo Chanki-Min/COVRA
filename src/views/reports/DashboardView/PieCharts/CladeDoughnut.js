@@ -57,20 +57,19 @@ const CladeDoughnut = ({
   );
   const [cladeData, setCladeData] = React.useState({});
 
-  async function fetchData() {
-    try {
-      const response = await fetch(`http://localhost:5000/nationalCladeStatus?nation=${nationOptions[nationIndex]}`);
-      const json = await response.json();
-      const processedData = await processFetchData(json);
-      setCladeData(processedData);
-    } catch (e) {
-      console.error(e.message);
-    }
-  }
-
   useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`http://localhost:5000/nationalCladeStatus?nation=${nationOptions[nationIndex]}`);
+        const json = await response.json();
+        const processedData = await processFetchData(json);
+        setCladeData(processedData);
+      } catch (e) {
+        console.error(e.message);
+      }
+    };
     fetchData();
-  }, [nationIndex]);
+  }, [nationOptions, nationIndex]);
 
   const options = {
     animation: {

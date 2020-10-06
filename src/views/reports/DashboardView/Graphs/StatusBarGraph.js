@@ -32,20 +32,19 @@ const StatusBarGraph = ({ className, nationOptions, ...rest }) => {
   const [dataList, setDataList] = React.useState([]);
   const dataListClone = _.cloneDeep(dataList);
 
-  const fetchData = async () => {
-    try {
-      const response = await fetch(`http://localhost:5000/nationalStatus?dayQ=15&weekQ=15&monthQ=8&nation=${nationOptions[nationIndex]}`);
-      const json = await response.json();
-      const processed = await processFetchData(json);
-      setDataList(processed);
-    } catch (e) {
-      console.log(e.message);
-    }
-  };
-
   React.useEffect(() => {
-    fetchData().then(() => console.log('data fetched'));
-  }, [nationIndex]);
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`http://localhost:5000/nationalStatus?dayQ=15&weekQ=15&monthQ=8&nation=${nationOptions[nationIndex]}`);
+        const json = await response.json();
+        const processed = await processFetchData(json);
+        setDataList(processed);
+      } catch (e) {
+        console.log(e.message);
+      }
+    };
+    fetchData();
+  }, [nationOptions, nationIndex]);
 
   // 그래프 표시 옵션
   const options = {

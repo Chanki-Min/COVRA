@@ -9,7 +9,6 @@ import {
   Divider,
   makeStyles,
   Typography,
-  useTheme
 } from '@material-ui/core';
 import {
   Line,
@@ -31,7 +30,6 @@ const useStyles = makeStyles(() => ({
 const PredictionLineGraph = ({ className, nationOptions, ...rest }) => {
   const chartRef = React.useRef(null);
   const classes = useStyles();
-  const theme = useTheme();
 
   const [nationIndex, setNationIndex] = React.useState(0);
 
@@ -41,22 +39,21 @@ const PredictionLineGraph = ({ className, nationOptions, ...rest }) => {
   const [dataList, setDataList] = React.useState([]);
   const dataListClone = _.cloneDeep(dataList);
 
-  const fetchData = async () => {
-    try {
-      const response = await fetch(`http://localhost:5000/nationalPrediction?dayQ=15&weekQ=15&monthQ=8&nation=${nationOptions[nationIndex]}&endDate=${endDate.format('yyyy-MM-DD')}`);
-      const json = await response.json();
-      const processed = await processFetchLineData(json);
-      setDataList(processed);
-    } catch (e) {
-      console.log(e.message);
-    }
-  };
-
   const capitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1);
 
   React.useEffect(() => {
-    fetchData().then(() => console.log('data fetched'));
-  }, [nationIndex, endDate]);
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`http://localhost:5000/nationalPrediction?dayQ=15&weekQ=15&monthQ=8&nation=${nationOptions[nationIndex]}&endDate=${endDate.format('yyyy-MM-DD')}`);
+        const json = await response.json();
+        const processed = await processFetchLineData(json);
+        setDataList(processed);
+      } catch (e) {
+        console.log(e.message);
+      }
+    };
+    fetchData();
+  }, [nationOptions, nationIndex, endDate]);
 
   // 그래프 표시 옵션
   const options = {

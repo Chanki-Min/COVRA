@@ -45,22 +45,21 @@ const InfoCard = ({
   const [nationIndex, setNationIndex] = React.useState(
     nationOptions.findIndex((v) => v === defaultNation)
   );
-  const fetchData = async () => {
-    try {
-      const response = await fetch(`${url}?nation=${nationOptions[nationIndex]}`);
-      const json = await response.json();
-      setData(json);
-    } catch (e) {
-      console.error(e);
-    }
-  };
 
   useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`${url}?nation=${nationOptions[nationIndex]}`);
+        const json = await response.json();
+        setData(json);
+      } catch (e) {
+        console.error(e);
+      }
+    };
     fetchData();
-  }, [nationIndex]);
+  }, [nationOptions, nationIndex, url]);
 
   useEffect(() => {
-    console.log('a');
     if (data !== undefined) {
       setDiff(parseInt(data.sinceYesterday, 10));
     }
