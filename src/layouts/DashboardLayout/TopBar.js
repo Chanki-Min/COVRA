@@ -1,23 +1,28 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import {
   AppBar,
-  Badge,
   Box,
-  Hidden,
   IconButton,
   Toolbar,
-  makeStyles, Typography
+  makeStyles,
+  Typography,
+  Dialog,
+  DialogContent,
 } from '@material-ui/core';
-import MenuIcon from '@material-ui/icons/Menu';
-import NotificationsIcon from '@material-ui/icons/NotificationsOutlined';
-import InputIcon from '@material-ui/icons/Input';
+import SupervisedUserCircleIcon from '@material-ui/icons/SupervisedUserCircle';
 import withStyles from '@material-ui/core/styles/withStyles';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import Profile from './Profile';
 
 const useStyles = makeStyles(() => ({
   root: {},
+  dialogBox: {
+    display: 'flex',
+    alignItems: 'stretch'
+  },
   avatar: {
     width: 60,
     height: 60
@@ -36,7 +41,21 @@ const TopBar = ({
   ...rest
 }) => {
   const classes = useStyles();
-  const [notifications] = useState([]);
+  const [showCredit, setShowCredit] = React.useState(false);
+
+  const handleOpen = () => setShowCredit(true);
+  const handleClose = () => setShowCredit(false);
+
+  const profileChanki = {
+    avatarSrc: '/static/images/avatars/avatar_1.png',
+    title: '홍익대학교 3학년, 프론트,백엔드,데이터수집',
+    name: '민찬기',
+    message: [
+      '이번 프로젝트는 KSB 인공지능 프레임워크/플랫폼(BeeAI) 활용 공모전 출품작입니다. 프론트와 백엔드간 코드 재활용 등을 고려하여 Js, React, Node.js를 사용하였습니다.',
+      '처음 사용하는 언어, 프레임워크를 사용하여 미숙하고 엉성한 부분이 많지만, 예쁘게 봐 주셨으면 좋겠습니다. 감사합니다!'
+    ],
+    githubLink: 'https://github.com/Chanki-Min',
+  };
 
   return (
     <AppBar
@@ -55,28 +74,40 @@ const TopBar = ({
         </RouterLink>
 
         <Box flexGrow={1} />
-        <Hidden mdDown>
-          <IconButton color="inherit">
-            <Badge
-              badgeContent={notifications.length}
-              color="primary"
-              variant="dot"
+        <IconButton
+          color="inherit"
+          onClick={handleOpen}
+        >
+          <SupervisedUserCircleIcon />
+        </IconButton>
+        <Dialog
+          open={showCredit}
+          onClose={handleClose}
+          maxWidth="md"
+          fullWidth
+          aria-labelledby="customized-dialog-title"
+        >
+          <DialogTitle id="customized-dialog-title" onClose={handleClose}>
+            <Typography
+              color="textPrimary"
+              variant="h3"
             >
-              <NotificationsIcon />
-            </Badge>
-          </IconButton>
-          <IconButton color="inherit">
-            <InputIcon />
-          </IconButton>
-        </Hidden>
-        <Hidden lgUp>
-          <IconButton
-            color="inherit"
-            onClick={onMobileNavOpen}
+              Credit
+            </Typography>
+          </DialogTitle>
+          <DialogContent
+            className={classes.dialogBox}
+            dividers
           >
-            <MenuIcon />
-          </IconButton>
-        </Hidden>
+            <Profile
+              user={profileChanki}
+            />
+
+            <Profile
+              user={profileChanki}
+            />
+          </DialogContent>
+        </Dialog>
       </Toolbar>
     </AppBar>
   );
