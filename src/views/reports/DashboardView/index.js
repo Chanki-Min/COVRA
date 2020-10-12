@@ -48,7 +48,7 @@ const Dashboard = () => {
           >
             <InfoCard
               title="GLOBAL DEATH"
-              url="http://localhost:5000/nationalDeath"
+              url={`${process.env.REACT_APP_BACKEND_URL}/nationalDeath`}
               defaultNation="global"
               nationOptions={nationOptions}
               showNationPicker={false}
@@ -63,7 +63,7 @@ const Dashboard = () => {
           >
             <InfoCard
               title="GLOBAL CONFIRMED"
-              url="http://localhost:5000/nationalConfirmed"
+              url={`${process.env.REACT_APP_BACKEND_URL}/nationalConfirmed`}
               defaultNation="global"
               nationOptions={nationOptions}
               showNationPicker={false}
@@ -78,7 +78,7 @@ const Dashboard = () => {
           >
             <InfoCard
               title="NATIONAL DEATH"
-              url="http://localhost:5000/nationalDeath"
+              url={`${process.env.REACT_APP_BACKEND_URL}/nationalDeath`}
               defaultNation="Australia"
               nationOptions={nationOptions}
               showNationPicker
@@ -93,7 +93,7 @@ const Dashboard = () => {
           >
             <InfoCard
               title="NATIONAL CONFIRMED"
-              url="http://localhost:5000/nationalConfirmed"
+              url={`${process.env.REACT_APP_BACKEND_URL}/nationalConfirmed`}
               defaultNation="Australia"
               nationOptions={nationOptions}
               showNationPicker

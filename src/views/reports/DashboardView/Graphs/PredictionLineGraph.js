@@ -44,7 +44,7 @@ const PredictionLineGraph = ({ className, nationOptions, ...rest }) => {
   React.useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/nationalPrediction?dayQ=15&weekQ=15&monthQ=8&nation=${nationOptions[nationIndex]}&endDate=${endDate.format('yyyy-MM-DD')}`);
+        const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/nationalPrediction?dayQ=15&weekQ=15&monthQ=8&nation=${nationOptions[nationIndex]}&endDate=${endDate.format('yyyy-MM-DD')}`);
         const json = await response.json();
         const processed = await processFetchLineData(json);
         setDataList(processed);

@@ -35,7 +35,7 @@ const StatusBarGraph = ({ className, nationOptions, ...rest }) => {
   React.useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/nationalStatus?dayQ=15&weekQ=15&monthQ=8&nation=${nationOptions[nationIndex]}`);
+        const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/nationalStatus?dayQ=15&weekQ=15&monthQ=8&nation=${nationOptions[nationIndex]}`);
         const json = await response.json();
         const processed = await processFetchData(json);
         setDataList(processed);

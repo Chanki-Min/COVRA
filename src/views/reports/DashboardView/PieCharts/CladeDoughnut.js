@@ -60,7 +60,7 @@ const CladeDoughnut = ({
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/nationalCladeStatus?nation=${nationOptions[nationIndex]}`);
+        const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/nationalCladeStatus?nation=${nationOptions[nationIndex]}`);
         const json = await response.json();
         const processedData = await processFetchData(json);
         setCladeData(processedData);
