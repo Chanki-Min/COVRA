@@ -36,6 +36,7 @@ const StatusBarGraph = ({ className, nationOptions, ...rest }) => {
     const fetchData = async () => {
       try {
         const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/nationalStatus?dayQ=15&weekQ=15&monthQ=8&nation=${nationOptions[nationIndex]}`);
+        if (response.status !== 200) throw new Error('no data');
         const json = await response.json();
         const processed = await processFetchData(json);
         setDataList(processed);

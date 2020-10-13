@@ -50,6 +50,7 @@ const InfoCard = ({
     const fetchData = async () => {
       try {
         const response = await fetch(`${url}?nation=${nationOptions[nationIndex]}`);
+        if (response.status !== 200) throw new Error('no data');
         const json = await response.json();
         setData(json);
       } catch (e) {

@@ -61,6 +61,7 @@ const CladeDoughnut = ({
     const fetchData = async () => {
       try {
         const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/nationalCladeStatus?nation=${nationOptions[nationIndex]}`);
+        if (response.status !== 200) throw new Error('no data');
         const json = await response.json();
         const processedData = await processFetchData(json);
         setCladeData(processedData);

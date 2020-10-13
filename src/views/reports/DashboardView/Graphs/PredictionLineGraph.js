@@ -45,6 +45,7 @@ const PredictionLineGraph = ({ className, nationOptions, ...rest }) => {
     const fetchData = async () => {
       try {
         const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/nationalPrediction?dayQ=15&weekQ=15&monthQ=8&nation=${nationOptions[nationIndex]}&endDate=${endDate.format('yyyy-MM-DD')}`);
+        if (response.status !== 200) throw new Error('no data');
         const json = await response.json();
         const processed = await processFetchLineData(json);
         setDataList(processed);
