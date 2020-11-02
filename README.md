@@ -6,7 +6,7 @@ KSB 인공지능 프레임워크 공모전 출품작, 계통군과 통계를 통
 
 ## License
 
-- Licensed under MIT (https://github.com/devias-io/react-material-dashboard/blob/master/LICENSE.md)
+- Licensed under MIT
 
 ## Contact Us
 
